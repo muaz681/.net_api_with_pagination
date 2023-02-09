@@ -1,6 +1,8 @@
 using FinalApi.Data;
+using FinalApi.IServices.IPerson;
 using FinalApi.Pagination.Services.CService;
 using FinalApi.Pagination.Services.IService;
+using FinalApi.Service.PersonService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,7 @@ builder.Services.AddSingleton<IUriService>(o =>
     return new UriService(uri);
 });
 builder.Services.AddControllers();
+builder.Services.AddScoped<IPersonService, PersonAppService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
