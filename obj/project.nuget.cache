@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HwvaBeec+FdgBx5HAljG5Hq41skMlr9QSiafoKlF1dmkEfrfw2YYWt04dx/xikNvEKP2XKbRJa7ioTot0CVW4g==",
+  "dgSpecHash": "TQIcW09wtto5iUvWn36zX5Hb8CQgcpCEprEX5asIrREJNv32lpHbqCJgFR1aragDRHZhC96tYsIb1KoUmcdafA==",
   "success": true,
   "projectFilePath": "C:\\Dotnet\\FinalApi\\FinalApi\\FinalApi.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\intern3.it\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\intern3.it\\.nuget\\packages\\grpc.core.api\\2.51.0\\grpc.core.api.2.51.0.nupkg.sha512",
     "C:\\Users\\intern3.it\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\intern3.it\\.nuget\\packages\\litedb\\5.0.15\\litedb.5.0.15.nupkg.sha512",
     "C:\\Users\\intern3.it\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\intern3.it\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\intern3.it\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",

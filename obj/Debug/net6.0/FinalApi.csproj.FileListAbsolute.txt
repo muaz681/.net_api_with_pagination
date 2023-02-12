@@ -82,3 +82,4 @@ C:\Dotnet\FinalApi\FinalApi\obj\Debug\net6.0\refint\FinalApi.dll
 C:\Dotnet\FinalApi\FinalApi\obj\Debug\net6.0\FinalApi.pdb
 C:\Dotnet\FinalApi\FinalApi\obj\Debug\net6.0\FinalApi.genruntimeconfig.cache
 C:\Dotnet\FinalApi\FinalApi\obj\Debug\net6.0\ref\FinalApi.dll
+C:\Dotnet\FinalApi\FinalApi\bin\Debug\net6.0\LiteDB.dll

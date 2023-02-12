@@ -14,6 +14,8 @@ using System.Data;
 using FinalApi.Helper;
 using FinalApi.IServices.IPerson;
 using FinalApi.DTO;
+using System.Collections;
+using LiteDB;
 
 namespace FinalApi.Controllers
 {
@@ -126,25 +128,29 @@ namespace FinalApi.Controllers
             return Ok(pagedReponse);
         }
 
-        [HttpPost]
+
+
+        [HttpPut]
         [Route("Update")]
-        public async Task<IActionResult> UpdatePerson([FromBody] PersonDTO personDto)
-        {
-            try
-            {
-                var dt = await _personService.UpdatePerson(personDto);
-                if (dt == null)
-                {
-                    return NotFound();
-                }
-                return Ok(dt);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-        //public async Task<IActionResult> UpdatePerson(int id, Person person)
+
+        //public async Task<IActionResult> UpdatePerson([FromBody] PersonDTO personDto)
+        //{
+        //    try
+        //    {
+        //        var dt = await _personService.UpdatePerson(personDto);
+        //        if (dt == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        return Ok(dt);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex);
+        //    }
+        //}
+
+        //public async Task<IActionResult> UpdatePerson(int bussinessID, string personType, bool nameType, string title, string firstName, string middleName, string lastName, string suffix, Guid rowguid)
         //{
         //    if (id != person.BusinessEntityId)
         //    {
@@ -173,36 +179,64 @@ namespace FinalApi.Controllers
         //}
 
 
-        //public async Task<MessageStatus> UpdatePerson(PersonDTO personDTO
-        //    //int bussinessID, string personType, bool nameType, string title, string firstName, string middleName, string lastName, string suffix, int mailPromotion, Guid rowguid
-        //    )
+        public async Task<MessageStatus> UpdatePerson(int bussinessID, string personType, bool nameType, string title, string firstName, string middleName, string lastName, string suffix, Guid rowguid)
+        {
+            try
+            {
+                var result = await _personService.UpdatePerson(bussinessID, personType, nameType, title, firstName, middleName, lastName, suffix, rowguid);
+                _messageStatus = new MessageStatus()
+                {
+                    Data = result,
+                    Status = true,
+                    Code = 200,
+                    Message = "Successful"
+                };
+            }
+            catch (Exception ex)
+            {
+                _messageStatus = new MessageStatus()
+                {
+                    Data = null,
+                    Status = true,
+                    Code = 200,
+                    Message = "Successful"
+                };
+            }
+            return _messageStatus;
+        }
+
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutProducts(int id, Person person)
         //{
+        //    if (id != person.BusinessEntityId)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    _dbContext.Entry(person).State = EntityState.Modified;
+
         //    try
         //    {
-        //        var result = await _personService.UpdatePerson( personDTO
-        //            //bussinessID, personType, nameType, title, firstName, middleName, lastName, suffix, mailPromotion, rowguid
-        //            );
-        //        _messageStatus = new MessageStatus()
-        //        {
-        //            Data = result,
-        //            Status = true,
-        //            Code = 200,
-        //            Message = "Successful"
-        //        };
+        //        await _dbContext.SaveChangesAsync();
         //    }
-        //    catch (Exception ex)
+        //    catch (DbUpdateConcurrencyException)
         //    {
-        //        _messageStatus = new MessageStatus()
+        //        if (!PersonExsits(id))
         //        {
-        //            Data = null,
-        //            Status = true,
-        //            Code = 200,
-        //            Message = "Successful"
-        //        };
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
         //    }
-        //    return _messageStatus;
-        //}
 
+        //    return NoContent();
+        //}
+        //private bool PersonExsits(int id)
+        //{
+        //    return _dbContext.People.Any(e => e.BusinessEntityId == id);
+        //}
         //Edit
         [HttpGet]
         [Route("{id}")]

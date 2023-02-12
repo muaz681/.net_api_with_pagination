@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[2.51.0, )"
             },
+            "LiteDB": {
+              "target": "Package",
+              "version": "[5.0.15, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.2, )"
