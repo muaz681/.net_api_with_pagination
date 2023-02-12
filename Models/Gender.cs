@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 namespace FinalApi.Models;
 
-public partial class Department
+public partial class Gender
 {
     public long Id { get; set; }
 
     public string Name { get; set; } = null!;
+
+    public string Sn1 { get; set; } = null!;
 
     public bool? IsActive { get; set; }
 

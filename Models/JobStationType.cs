@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FinalApi.Models;
 
-public partial class Department
+public partial class JobStationType
 {
     public long Id { get; set; }
 
