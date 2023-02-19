@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using FinalApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +7,6 @@ namespace FinalApi.Data;
 
 public partial class AdventureWorks2019Context : DbContext
 {
-    internal Task<DataTable> persons;
-
     public AdventureWorks2019Context()
     {
     }
@@ -198,7 +195,6 @@ public partial class AdventureWorks2019Context : DbContext
     public virtual DbSet<WorkOrderRouting> WorkOrderRoutings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=10.24.50.119;Initial Catalog=AdventureWorks2019;Persist Security Info=True;User ID=rNwUs@Ag;Password=a2sLs@Ag;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

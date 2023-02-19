@@ -3,61 +3,95 @@ using System.Collections.Generic;
 
 namespace FinalApi.Models;
 
+/// <summary>
+/// Employee information such as salary, department, and title.
+/// </summary>
 public partial class Employee
 {
-    public long Id { get; set; }
+    /// <summary>
+    /// Primary key for Employee records.  Foreign key to BusinessEntity.BusinessEntityID.
+    /// </summary>
+    public int BusinessEntityId { get; set; }
 
-    public string Name { get; set; } = null!;
+    /// <summary>
+    /// Unique national identification number such as a social security number.
+    /// </summary>
+    public string NationalIdnumber { get; set; } = null!;
 
-    public string Code { get; set; } = null!;
+    /// <summary>
+    /// Network login.
+    /// </summary>
+    public string LoginId { get; set; } = null!;
 
-    public string ContactNo { get; set; } = null!;
+    /// <summary>
+    /// The depth of the employee in the corporate hierarchy.
+    /// </summary>
+    public short? OrganizationLevel { get; set; }
 
-    public bool? IsActive { get; set; }
+    /// <summary>
+    /// Work title such as Buyer or Sales Representative.
+    /// </summary>
+    public string JobTitle { get; set; } = null!;
 
-    public bool IsSalaryHold { get; set; }
+    /// <summary>
+    /// Date of birth.
+    /// </summary>
+    public DateTime BirthDate { get; set; }
 
-    public string Nid { get; set; } = null!;
+    /// <summary>
+    /// M = Married, S = Single
+    /// </summary>
+    public string MaritalStatus { get; set; } = null!;
 
-    public string ParmanentAddress { get; set; } = null!;
+    /// <summary>
+    /// M = Male, F = Female
+    /// </summary>
+    public string Gender { get; set; } = null!;
 
-    public string PresentAddress { get; set; } = null!;
+    /// <summary>
+    /// Employee hired on this date.
+    /// </summary>
+    public DateTime HireDate { get; set; }
 
-    public long DesignationId { get; set; }
+    /// <summary>
+    /// Job classification. 0 = Hourly, not exempt from collective bargaining. 1 = Salaried, exempt from collective bargaining.
+    /// </summary>
+    public bool? SalariedFlag { get; set; }
 
-    public long DepartmetId { get; set; }
+    /// <summary>
+    /// Number of available vacation hours.
+    /// </summary>
+    public short VacationHours { get; set; }
 
-    public long JobStationId { get; set; }
+    /// <summary>
+    /// Number of available sick leave hours.
+    /// </summary>
+    public short SickLeaveHours { get; set; }
 
-    public long UnitId { get; set; }
+    /// <summary>
+    /// 0 = Inactive, 1 = Active
+    /// </summary>
+    public bool? CurrentFlag { get; set; }
 
-    public string GuardianName { get; set; } = null!;
+    /// <summary>
+    /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
+    /// </summary>
+    public Guid Rowguid { get; set; }
 
-    public string GuardianContactNo { get; set; } = null!;
+    /// <summary>
+    /// Date and time the record was last updated.
+    /// </summary>
+    public DateTime ModifiedDate { get; set; }
 
-    public string GuardianAddress { get; set; } = null!;
+    public virtual Person BusinessEntity { get; set; } = null!;
 
-    public string ImagePath { get; set; } = null!;
+    public virtual ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; } = new List<EmployeeDepartmentHistory>();
 
-    public DateTime JoiningDate { get; set; }
+    public virtual ICollection<EmployeePayHistory> EmployeePayHistories { get; } = new List<EmployeePayHistory>();
 
-    public DateTime DateOfBirth { get; set; }
+    public virtual ICollection<JobCandidate> JobCandidates { get; } = new List<JobCandidate>();
 
-    public DateTime AppointmentDate { get; set; }
+    public virtual ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; } = new List<PurchaseOrderHeader>();
 
-    public string Email { get; set; } = null!;
-
-    public long JobTypeId { get; set; }
-
-    public string PunchCardNo { get; set; } = null!;
-
-    public long SupervisorId { get; set; }
-
-    public int GenderId { get; set; }
-
-    public int ReligionId { get; set; }
-
-    public DateTime LastActionDate { get; set; }
-
-    public long LastActionBy { get; set; }
+    public virtual SalesPerson? SalesPerson { get; set; }
 }

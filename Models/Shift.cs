@@ -3,25 +3,35 @@ using System.Collections.Generic;
 
 namespace FinalApi.Models;
 
+/// <summary>
+/// Work shift lookup table.
+/// </summary>
 public partial class Shift
 {
-    public long Id { get; set; }
+    /// <summary>
+    /// Primary key for Shift records.
+    /// </summary>
+    public byte ShiftId { get; set; }
 
+    /// <summary>
+    /// Shift description.
+    /// </summary>
     public string Name { get; set; } = null!;
 
-    public DateTime StartTime { get; set; }
+    /// <summary>
+    /// Shift start time.
+    /// </summary>
+    public TimeSpan StartTime { get; set; }
 
-    public DateTime EndTime { get; set; }
+    /// <summary>
+    /// Shift end time.
+    /// </summary>
+    public TimeSpan EndTime { get; set; }
 
-    public DateTime LatePunchTime { get; set; }
+    /// <summary>
+    /// Date and time the record was last updated.
+    /// </summary>
+    public DateTime ModifiedDate { get; set; }
 
-    public DateTime LastPunchTime { get; set; }
-
-    public long JobStationId { get; set; }
-
-    public bool? IsActive { get; set; }
-
-    public DateTime LastActionDate { get; set; }
-
-    public long LastActionBy { get; set; }
+    public virtual ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; } = new List<EmployeeDepartmentHistory>();
 }

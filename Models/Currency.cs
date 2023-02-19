@@ -3,25 +3,29 @@ using System.Collections.Generic;
 
 namespace FinalApi.Models;
 
+/// <summary>
+/// Lookup table containing standard ISO currencies.
+/// </summary>
 public partial class Currency
 {
-    public int Id { get; set; }
+    /// <summary>
+    /// The ISO code for the Currency.
+    /// </summary>
+    public string CurrencyCode { get; set; } = null!;
 
-    public string Currency1 { get; set; } = null!;
+    /// <summary>
+    /// Currency name.
+    /// </summary>
+    public string Name { get; set; } = null!;
 
-    public string CurrencyShort { get; set; } = null!;
+    /// <summary>
+    /// Date and time the record was last updated.
+    /// </summary>
+    public DateTime ModifiedDate { get; set; }
 
-    public decimal _1Bdt { get; set; }
+    public virtual ICollection<CountryRegionCurrency> CountryRegionCurrencies { get; } = new List<CountryRegionCurrency>();
 
-    public decimal ConversionToBdt { get; set; }
+    public virtual ICollection<CurrencyRate> CurrencyRateFromCurrencyCodeNavigations { get; } = new List<CurrencyRate>();
 
-    public string CurrencySign { get; set; } = null!;
-
-    public string ContinentName { get; set; } = null!;
-
-    public DateTime LastUpdateDate { get; set; }
-
-    public int LastUpdatedBy { get; set; }
-
-    public bool? IsActive { get; set; }
+    public virtual ICollection<CurrencyRate> CurrencyRateToCurrencyCodeNavigations { get; } = new List<CurrencyRate>();
 }
