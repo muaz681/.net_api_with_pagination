@@ -7,5 +7,6 @@ namespace FinalApi.IServices.ISProcedure
     public interface ISPEmployeJob
     {
         public Task<DataTable> GetJobStation(int intJobStationID);
+        
     }
 }
