@@ -15,7 +15,7 @@ namespace FinalApi.Service.StoredProcedureService
             _context = context;
         }
 
-        public async Task<DataTable> GetJobStation(int intJobStationID)
+        public async Task<DataTable> GetJobStation(int pageSize, int pageNumber, int intJobStationID)
         {
 
             DataTable dt = new DataTable();
@@ -30,6 +30,8 @@ namespace FinalApi.Service.StoredProcedureService
                     {
                         sqlcmd.CommandType = CommandType.StoredProcedure;
                         sqlcmd.Parameters.AddWithValue("@intLoginId", intJobStationID);
+                        sqlcmd.Parameters.AddWithValue("@pageSize", pageSize);
+                        sqlcmd.Parameters.AddWithValue("@pageNumber", pageNumber);
                         connection.Open();
 
                         using (SqlDataAdapter sqlAdaptar = new SqlDataAdapter(sqlcmd))

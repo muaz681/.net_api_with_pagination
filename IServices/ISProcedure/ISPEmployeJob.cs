@@ -6,7 +6,7 @@ namespace FinalApi.IServices.ISProcedure
 {
     public interface ISPEmployeJob
     {
-        public Task<DataTable> GetJobStation(int intJobStationID);
+        public Task<DataTable> GetJobStation(int pageSize, int pageNumber, int intJobStationID);
         
     }
 }

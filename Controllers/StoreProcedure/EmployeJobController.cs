@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 using System.Data;
 using System;
 using Microsoft.Data.SqlClient;
+using FinalApi.Models;
+using LiteDB;
+using System.Data.SqlTypes;
 
 namespace FinalApi.Controllers.StoreProcedure
 {
@@ -22,11 +25,11 @@ namespace FinalApi.Controllers.StoreProcedure
         }
         [HttpGet]
         [Route("employeJob")]
-        public async Task<MessageStatus> GetJobStation(int intJobStationID)
+        public async Task<MessageStatus> GetJobStation(int pageSize, int pageNumber, int intJobStationID)
         {
             try
             {
-                DataTable result = await _ispEMployeJob.GetJobStation(intJobStationID);
+                DataTable result = await _ispEMployeJob.GetJobStation(pageSize, pageNumber, intJobStationID);
                 if (result.Rows.Count > 0)
                 {
                     string output = JsonConvert.SerializeObject(result);
@@ -61,6 +64,39 @@ namespace FinalApi.Controllers.StoreProcedure
                 };
             }
             return _messageStatus;
+        }
+
+        [HttpGet]
+        [Route("pegTest")]
+        public IActionResult GetProducts(int pageSize, int pageNumber, int intLoginId)
+        {
+            var connection = new SqlConnection("Data Source=10.24.50.119;Initial Catalog=ERP_HR;Persist Security Info=True;User ID=rNwUs@Ag;Password=a2sLs@Ag;TrustServerCertificate=true;ApplicationIntent=ReadWrite;");
+            using (connection)
+            {
+                string sql = "[dbo].[sprEmployeeByJobStation]";
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@PageSize", SqlDbType.Int).Value = pageSize;
+                command.Parameters.Add("@PageNumber", SqlDbType.Int).Value = pageNumber;
+                command.Parameters.Add("@IntLoginId", SqlDbType.Int).Value = intLoginId;
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                List<EmployeJob> employejobs = new List<EmployeJob>();
+                while (reader.Read())
+                {
+                    EmployeJob employejob = new EmployeJob();
+                    employejob.strEmployeeName = (string)reader["strEmployeeName"];
+                    
+                    if (reader["strEmployeeCode"] != DBNull.Value)
+                    {
+                        employejob.strEmployeeCode = (string)reader["strEmployeeCode"];
+                    }
+                    employejobs.Add(employejob);
+                }
+
+                return Ok(employejobs);
+            }
         }
 
 
