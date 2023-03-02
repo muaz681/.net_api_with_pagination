@@ -15,7 +15,7 @@ namespace FinalApi.Service.StoredProcedureService
             _context = context;
         }
 
-        public async Task<DataTable> GetJobStation(int pageSize, int pageNumber, int intJobStationID)
+        public async Task<DataTable> GetJobStation(int intJobStationID, int pageSize, int pageNumber)
         {
 
             DataTable dt = new DataTable();

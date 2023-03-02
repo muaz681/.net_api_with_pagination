@@ -25,11 +25,11 @@ namespace FinalApi.Controllers.StoreProcedure
         }
         [HttpGet]
         [Route("employeJob")]
-        public async Task<MessageStatus> GetJobStation(int pageSize, int pageNumber, int intJobStationID)
+        public async Task<MessageStatus> GetJobStation(int intJobStationID, int pageSize, int pageNumber)
         {
             try
             {
-                DataTable result = await _ispEMployeJob.GetJobStation(pageSize, pageNumber, intJobStationID);
+                DataTable result = await _ispEMployeJob.GetJobStation(intJobStationID, pageSize, pageNumber);
                 if (result.Rows.Count > 0)
                 {
                     string output = JsonConvert.SerializeObject(result);
