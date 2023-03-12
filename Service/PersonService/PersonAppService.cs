@@ -1,5 +1,4 @@
 ﻿using FinalApi.Data;
-using FinalApi.DTO;
 using FinalApi.Helper;
 using FinalApi.IServices.IPerson;
 using FinalApi.Models;

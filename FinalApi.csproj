@@ -19,4 +19,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Authorized\Data\" />
+    <Folder Include="Authorized\IServices\" />
+    <Folder Include="Authorized\Models\" />
+    <Folder Include="Authorized\Controller\" />
+    <Folder Include="Authorized\Service\" />
+  </ItemGroup>
+
 </Project>

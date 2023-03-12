@@ -1,1 +1,5 @@
-﻿scaffold-DbContext "Data Source=10.24.50.119;Initial Catalog=AdventureWorks2019;Persist Security Info=True;User ID=rNwUs@Ag;Password=a2sLs@Ag;Integrated Security=false;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models" -ContextDir "Data"  -f
+﻿--Single Folder Scaffold --
+scaffold-DbContext "Data Source=10.24.50.119;Initial Catalog=Muaz_Security;Persist Security Info=True;User ID=rNwUs@Ag;Password=a2sLs@Ag;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models" -ContextDir "Data" -f
+
+-- Folder to Folder Scaffold --
+Scaffold-DbContext "Data Source=10.24.50.119;Initial Catalog=Muaz_Security;Persist Security Info=True;User ID=rNwUs@Ag;Password=a2sLs@Ag; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Authorized\Models" -ContextDir "Authorized\Data" -f
