@@ -8,23 +8,24 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.Core.Api" Version="2.51.0" />
+    <PackageReference Include="JWT" Version="10.0.2" />
     <PackageReference Include="LiteDB" Version="5.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.27.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Authorized\Data\" />
-    <Folder Include="Authorized\IServices\" />
-    <Folder Include="Authorized\Models\" />
-    <Folder Include="Authorized\Controller\" />
-    <Folder Include="Authorized\Service\" />
+    <Folder Include="Authorized\AuthCheck\" />
   </ItemGroup>
 
 </Project>

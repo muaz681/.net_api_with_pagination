@@ -1,3 +1,6 @@
+using FinalApi.Authorized.Data;
+using FinalApi.Authorized.IServices;
+using FinalApi.Authorized.Service.StoreProcedureService;
 using FinalApi.Data;
 using FinalApi.IServices.IPerson;
 using FinalApi.IServices.ISProcedure;
@@ -6,7 +9,11 @@ using FinalApi.Pagination.Services.IService;
 using FinalApi.Service.PersonService;
 using FinalApi.Service.StoredProcedureService;
 using FinalApi.StoreProcedure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +31,9 @@ builder.Services.AddDbContext<ErpAppsContext>();
 builder.Services.AddScoped<ISPEmployeJob, SPAEmployeService>();
 builder.Services.AddDbContext<ERP_HR_Context>();
 
+builder.Services.AddScoped<IAuthServices, SPAuthService>();
+builder.Services.AddDbContext<MuazSecurityContext>();
+
 builder.Services.AddDbContext<AdventureWorks2019Context>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Adventure_Connection"));
@@ -35,6 +45,9 @@ builder.Services.AddDbContext<AdventureWorks2019Context>(options =>
 builder.Services.AddDbContext<ErpAppsContext>(options =>
            options.UseSqlServer(builder.Configuration.GetConnectionString("Apps_Connection")));
 
+builder.Services.AddDbContext<MuazSecurityContext>(options =>
+           options.UseSqlServer(builder.Configuration.GetConnectionString("Authentication")));
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<IUriService>(o =>
 {
@@ -43,6 +56,10 @@ builder.Services.AddSingleton<IUriService>(o =>
     var uri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent());
     return new UriService(uri);
 });
+
+
+
+
 builder.Services.AddControllers();
 builder.Services.AddTransient<IPersonService, PersonAppService>();
 builder.Services.AddTransient<ISPServices, SPAppService>();

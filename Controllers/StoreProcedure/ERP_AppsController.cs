@@ -78,7 +78,7 @@ namespace FinalApi.Controllers.StoreProcedure
                     List<AddInputOrder> data = JsonConvert.DeserializeObject<List<AddInputOrder>>(output);
                     return _messageStatus = new MessageStatus()
                     {
-                        Data = null,//data,
+                        Data = null,
                         Status = true,
                         Code = 200,
                         Message = "Successfull"
